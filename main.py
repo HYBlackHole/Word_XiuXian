@@ -298,6 +298,14 @@ elif a == "l":
   gongfa2 = int(data[5])
   jixian = int(data[6])
   gongfa3 = int(data[7])
+  gongji = int(data[8])
+  wuji1 = int(data[9])
+  wuji2 = int(data[10])
+  wuji3 = int(data[11])
+  lingqi1 = int(data[12])
+  lingqi2 = int(data[13])
+  lingqi3 = int(data[14])
+  lingqi = int(data[15])
 
   f3 = open("data.txt", "r")
   mes = 0
@@ -333,19 +341,19 @@ while True:
     clear()
     print("\nTupola !")
     sleep(3)
-    if int(jixian) == 100:
+    if jixian == 100:
       jixian = 500
       jia += 20
       gongji += 30
-    elif int(jixian) == "500":
+    elif jixian == 500:
       jixian = 2500
       jia += 100
       gongji += 50
-    elif int(jixian) == "2500":
+    elif jixian == 2500:
       jixian = 12500
       jia += 500
       gongji += 100
-    elif int(jixian) == "12500":
+    elif jixian == 12500:
       clear()
       print("\nYou win the game !")
       print("\nSee you next time !")
@@ -404,11 +412,11 @@ while True:
           if gongfa1 < 10:
             jia += 5
             ll -= 30
+            gongfa1 += 1
             clear()
             print("\nYou buy it succesfully !")
-            print("\n[gongfa1][lvl+1]")
+            print("\n[gongfa1][lvl{}]".format(gongfa1))
             sleep(2)
-            gongfa1 += 1
             q = "s"
             continue
           else:
@@ -429,10 +437,10 @@ while True:
             jia += 20
             ll -= 100
             clear()
-            print("\nYou buy it succesfully !")
-            print("\n[gongfa2][lvl+1]")
-            sleep(2)
             gongfa2 += 1
+            print("\nYou buy it succesfully !")
+            print("\n[gongfa2][lvl{}]".format(gongfa2))
+            sleep(2)
             q = "s"
             continue
           else:
@@ -453,7 +461,7 @@ while True:
             ll -= 500
             clear()
             print("\nYou buy it succesfully !")
-            print("\n[gongfa3][lvl+1]")
+            print("\n[gongfa3][lvl{}]".format(gongfa3))
             sleep(2)
             gongfa3 += 1
             q = "s"
@@ -483,14 +491,14 @@ while True:
       q = input("\n>>> ")
       if q == "w1":
         if ll > 49:
-          if wuji1 < 10:
+          if wuji1 < 4:
             jia += 10
             ll -= 50
+            wuji1 += 1
             clear()
             print("\nYou buy it succesfully !")
-            print("\n[wuji1][lvl+1]")
+            print("\n[wuji1][lvl{}]".format(wuji1))
             sleep(2)
-            wuji1 += 1
             q = "s"
             continue
           else:
@@ -507,14 +515,14 @@ while True:
         continue
       elif q == "w2":
         if ll > 149:
-          if wuji2 < 10:
+          if wuji2 < 4:
             jia += 30
             ll -= 150
+            wuji2 += 1
             clear()
             print("\nYou buy it succesfully !")
-            print("\n[wuji2][lvl+1]")
+            print("\n[wuji2][lvl{}]".format(wuji2))
             sleep(2)
-            wuji2 += 1
             q = "s"
             continue
           else:
@@ -530,14 +538,14 @@ while True:
         continue
       elif q == "w3":
         if ll > 249:
-          if wuji3 < 10:
+          if wuji3 < 4:
             jia += 50
             ll -= 250
+            wuji3 += 1
             clear()
             print("\nYou buy it succesfully !")
-            print("\n[wuji3][lvl+1]")
+            print("\n[wuji3][lvl{}]".format(wuji3))
             sleep(2)
-            wuji3 += 1
             q = "s"
             continue
           else:
