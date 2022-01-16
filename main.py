@@ -667,6 +667,18 @@ while True:
           q = "s"
           continue
 
+  if location == "forest":
+    if q == "m":
+      clear()
+      print("\n(in progress)\n[tuichu][t]")
+      q = input("\n>>> ")
+      if q == "t":
+        q = ""
+        continue
+      else:
+        q = "m"
+        continue
+
   if q == "x":
     clear()
     print("\n[dazuo][d]\n[biguan][b]\n[tuichu][t]")
@@ -906,5 +918,10 @@ while True:
     break
 
   else:
-    q = ""
+    if location == "house" and q != "s":
+      q = ""
+      continue
+    elif location == "forest" and q != "m":
+      q = ""
+      continue
 
