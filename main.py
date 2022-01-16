@@ -20,10 +20,11 @@ gongji = 10
 wuji1 = 0
 wuji2 = 0
 wuji3 = 0
-lingqi1 = "-"
-lingqi2 = "-"
-lingqi3 = "-"
+lingqi1 = "11"
+lingqi2 = "11"
+lingqi3 = "11"
 lingqi = 0
+location = "house"
 
 
 def clear():
@@ -66,6 +67,7 @@ def baocun():
   bc_list.append("/"+str(lingqi2))
   bc_list.append("/"+str(lingqi3))
   bc_list.append("/"+str(lingqi))
+  bc_list.append("/"+str(location))
   bc_list.append("/")
   bc_str = "".join(bc_list)
   dictio.append(bc_str)
@@ -96,11 +98,19 @@ def dazuo(t):
   sleep(0.5)
   clear()
   if t == 4:
-    print("\n[lingli]+{}".format(jia))
-    ll += jia
+    if location == "forest":
+      print("\n[lingli]+{}".format(jia))
+      ll += jia
+    elif location == "house":
+      print("\n[lingli]+{}".format(jia*2))
+      ll += jia*2
   elif t == 7:
-    print("\n[lingli]+{}".format(jia*2))
-    ll += jia*2
+    if location == "forest":
+      print("\n[lingli]+{}".format(jia*4))
+      ll += jia*4
+    elif location == "house":
+      print("\n[lingli]+{}".format(jia*2))
+      ll += jia*2
   sleep(2)
 
 clear()
@@ -280,10 +290,11 @@ elif a == "l":
         sleep(2)
   clear()
   print("\nLoging...")
+  sleep(2)
   data = []
   decode1 = dictio[p2]
   it2 = 0
-  for x in range(0,16):
+  for x in range(0,17):
     decode2 = ""
     while decode1[it2] != "/":
       decode2 = decode2+decode1[it2]
@@ -306,6 +317,7 @@ elif a == "l":
   lingqi2 = int(data[13])
   lingqi3 = int(data[14])
   lingqi = int(data[15])
+  location = data[16]
 
   f3 = open("data.txt", "r")
   mes = 0
@@ -335,6 +347,13 @@ elif a == "l":
   f8.write(dictio_str)
   f8.close()
 
+
+
+
+
+
+
+
 q = ""
 while True:
   if ll > jixian:
@@ -342,33 +361,311 @@ while True:
     print("\nTupola !")
     sleep(3)
     if jixian == 100:
+      print("\nJingjie : zhujiqi")
       jixian = 500
       jia += 20
       gongji += 30
     elif jixian == 500:
+      print("\nJingjie : jindanqi")
       jixian = 2500
       jia += 100
       gongji += 50
     elif jixian == 2500:
+      print("\nJingjie : yuanyingqi")
       jixian = 12500
       jia += 500
       gongji += 100
     elif jixian == 12500:
       clear()
+      print("\nJingjie : Xian")
       print("\nYou win the game !")
-      print("\nSee you next time !")
+      print("See you next time !")
       break
   if q == "":
     clear()
     print("\nName: {}".format(name)+"\nLingli : {}/{}".format(ll, jixian)+"\nGongji: {}".format(gongji))
     if jixian == 100:
-      print("huizhang : |*|")
+      if ll == 0:
+        print("Jingjie : wu")
+        print("Huizhang : wu")
+      else:
+        print("Jingjie : lianqiqi")
+        print("Huizhang : |*|")
     elif jixian == 500:
-      print("huizhang : [#]")
+      print("Jingjie : zhujiqi")
+      print("Huizhang : [#]")
     elif jixian == 2500:
-      print("huizhang : {∆}")
-    print("\n[xiulian][x]\n[shangdian][s]\n[gongfa][g]\n[wuji][w]\n[lingqi][l]\n[maoxian][m]\n[baocun][b]\n")
-    q = input(">>> ")
+      print("Jingjie : jindanqi")
+      print("Huizhang : {∆}")
+    elif jixian == 12500:
+      print("Jingjie : yuanyingqi")
+      print("Huizhang : (◊)")
+
+
+  if location == "house":
+    if q == "":
+      print("\n[xiulian][x]\n[shangdian][s]\n[gongfa][g]\n[wuji][w]\n[lingqi][l]\n[ditu][d]\n[baocun][b]\n")
+      q = input(">>> ")
+  elif location == "forest":
+    if q == "":
+      print("\n[xiulian][x]\n[maoxian][m]\n[gongfa][g]\n[wuji][w]\n[lingqi][l]\n[ditu][d]\n[baocun][b]\n")
+      q = input(">>> ")
+
+  if location == "house":
+    if q == "s":
+      clear()
+      print("\n[gongfa][g]")
+      print("[wuji][w]")
+      print("[lingqi][l]")
+      print("[tuichu][t]")
+      q = input("\n>>> ")
+      if q == "t":
+        q = ""
+        continue
+      elif q == "g":
+        clear()
+        s = 0
+        print("\n[gongfa1][lingli+5][jiage30lingli][g1]")
+        print("[gongfa2][lingli+20][jiage100lingli][g2]")
+        print("[gongfa3][lingli+100][jiage500lingli][g3]")
+        print("[tuichu][t]")
+        q = input("\n>>> ")
+        if q == "g1":
+          if ll > 29:
+            if gongfa1 < 10:
+              jia += 5
+              ll -= 30
+              gongfa1 += 1
+              clear()
+              print("\nYou buy it succesfully !")
+              print("\n[gongfa1][lvl:{}]".format(gongfa1))
+              sleep(2)
+              q = "s"
+              continue
+            else:
+              clear()
+              print("\nLevel max !")
+              sleep(2)
+              q = "s"
+              continue
+          else:
+            clear()
+            print("\nNot enough lingli !")
+            sleep(2)
+          q = "s"
+          continue
+        elif q == "g2":
+          if ll > 99:
+            if gongfa2 < 10:
+              jia += 20
+              ll -= 100
+              clear()
+              gongfa2 += 1
+              print("\nYou buy it succesfully !")
+              print("\n[gongfa2][lvl:{}]".format(gongfa2))
+              sleep(2)
+              q = "s"
+              continue
+            else:
+              clear()
+              print("\nLevel max !")
+              q = "s"
+              continue
+          else:
+            clear()
+            print("\nNot enough lingli !")
+            sleep(2)
+          q = "s"
+          continue
+        elif q == "g3":
+          if ll > 499:
+            if gongfa3 < 10:
+              jia += 100
+              ll -= 500
+              clear()
+              gongfa3 += 1
+              print("\nYou buy it succesfully !")
+              print("\n[gongfa3][lvl:{}]".format(gongfa3))
+              sleep(2)
+              q = "s"
+              continue
+            else:
+              clear()
+              print("\nLevel max !")
+              sleep(2)
+              q = "s"
+              continue
+          else:
+            clear()
+            print("\nNot enough lingli !")
+            sleep(2)
+          q = "s"
+          continue
+        else:
+          q = "s"
+          continue
+      elif q == "w":
+        s = 0
+        clear()
+        print("\n[wuji1][gongji+10][jiage50lingli][w1]")
+        print("[wuji2][gongji+30][jiage150lingli][w2]")
+        print("[wuji3][gongji+50][jiage250lingli][w3]")
+        print("[tuichu][t]")
+        q = input("\n>>> ")
+        if q == "w1":
+          if ll > 49:
+            if wuji1 < 4:
+              jia += 10
+              ll -= 50
+              wuji1 += 1
+              clear()
+              print("\nYou buy it succesfully !")
+              print("\n[wuji1][lvl:{}]".format(wuji1))
+              sleep(2)
+              q = "s"
+              continue
+            else:
+              clear()
+              print("\nLevel max !")
+              sleep(2)
+              q = "s"
+              continue
+          else:
+            clear()
+            print("\nNot enough lingli !")
+            sleep(2)
+          q = "s"
+          continue
+        elif q == "w2":
+          if ll > 149:
+            if wuji2 < 4:
+              jia += 30
+              ll -= 150
+              wuji2 += 1
+              clear()
+              print("\nYou buy it succesfully !")
+              print("\n[wuji2][lvl:{}]".format(wuji2))
+              sleep(2)
+              q = "s"
+              continue
+            else:
+              clear()
+              print("\nLevel max !")
+              q = "s"
+              continue
+          else:
+            clear()
+            print("\nNot enough lingli !")
+            sleep(2)
+          q = "s"
+          continue
+        elif q == "w3":
+          if ll > 249:
+            if wuji3 < 4:
+              jia += 50
+              ll -= 250
+              wuji3 += 1
+              clear()
+              print("\nYou buy it succesfully !")
+              print("\n[wuji3][lvl:{}]".format(wuji3))
+              sleep(2)
+              q = "s"
+              continue
+            else:
+              clear()
+              print("\nLevel max !")
+              sleep(2)
+              q = "s"
+              continue
+          else:
+            clear()
+            print("\nNot enough lingli !")
+            sleep(2)
+          q = "s"
+          continue
+        else:
+          q = "s"
+          continue
+
+      elif q == "l":
+        s = 0
+        clear()
+        print("\n[lingqi1][gongji+50][jiage500lingli][l1]")
+        print("[lingqi2][gongji+50][jiage500lingli][l2]")
+        print("[lingqi3][gongji+100][jiage1200lingli][l3]")
+        print("[tuichu][t]")
+        q = input("\n>>> ")
+        if q == "l1":
+          if ll > 49:
+            if wuji1 != "":
+              gongji += 50
+              ll -= 500
+              clear()
+              print("\nYou buy it succesfully !")
+              sleep(2)
+              lingqi1 = 0
+              q = "s"
+              continue
+            else:
+              clear()
+              print("\nAlready purchased !")
+              sleep(2)
+              q = "s"
+              continue
+          else:
+            clear()
+            print("\nNot enough lingli !")
+            sleep(2)
+          q = "s"
+          continue
+        elif q == "l2":
+          if ll > 149:
+            if wuji2 != "":
+              gongji += 50
+              ll -= 500
+              clear()
+              print("\nYou buy it succesfully !")
+              sleep(2)
+              lingqi = 0
+              q = "s"
+              continue
+            else:
+              clear()
+              print("\nAlready purchased !")
+              q = "s"
+              continue
+          else:
+            clear()
+            print("\nNot enough lingli !")
+            sleep(2)
+          q = "s"
+          continue
+        elif q == "l3":
+          if ll > 249:
+            if wuji3 != "":
+              gongji += 100
+              ll -= 1200
+              clear()
+              print("\nYou buy it succesfully !")
+              sleep(2)
+              lingqi = 0
+              q = "s"
+              continue
+            else:
+              clear()
+              print("\nAlready purchased !")
+              sleep(2)
+              q = "s"
+              continue
+          else:
+            clear()
+            print("\nNot enough lingli !")
+            sleep(2)
+          q = "s"
+          continue
+        else:
+          q = "s"
+          continue
 
   if q == "x":
     clear()
@@ -388,281 +685,7 @@ while True:
     else:
       q = "x"
       continue
-      
-  elif q == "s":
-    clear()
-    print("\n[gongfa][g]")
-    print("[wuji][w]")
-    print("[lingqi][l]")
-    print("[tuichu][t]")
-    q = input("\n>>> ")
-    if q == "t":
-      q = ""
-      continue
-    elif q == "g":
-      clear()
-      s = 0
-      print("\n[gongfa1][lingli+5][jiage30lingli][g1]")
-      print("[gongfa2][lingli+20][jiage100lingli][g2]")
-      print("[gongfa3][lingli+100][jiage500lingli][g3]")
-      print("[tuichu][t]")
-      q = input("\n>>> ")
-      if q == "g1":
-        if ll > 29:
-          if gongfa1 < 10:
-            jia += 5
-            ll -= 30
-            gongfa1 += 1
-            clear()
-            print("\nYou buy it succesfully !")
-            print("\n[gongfa1][lvl{}]".format(gongfa1))
-            sleep(2)
-            q = "s"
-            continue
-          else:
-            clear()
-            print("\nLevel max !")
-            sleep(2)
-            q = "s"
-            continue
-        else:
-          clear()
-          print("\nNot enough lingli !")
-          sleep(2)
-        q = "s"
-        continue
-      elif q == "g2":
-        if ll > 99:
-          if gongfa2 < 10:
-            jia += 20
-            ll -= 100
-            clear()
-            gongfa2 += 1
-            print("\nYou buy it succesfully !")
-            print("\n[gongfa2][lvl{}]".format(gongfa2))
-            sleep(2)
-            q = "s"
-            continue
-          else:
-            clear()
-            print("\nLevel max !")
-            q = "s"
-            continue
-        else:
-          clear()
-          print("\nNot enough lingli !")
-          sleep(2)
-        q = "s"
-        continue
-      elif q == "g3":
-        if ll > 499:
-          if gongfa3 < 10:
-            jia += 100
-            ll -= 500
-            clear()
-            print("\nYou buy it succesfully !")
-            print("\n[gongfa3][lvl{}]".format(gongfa3))
-            sleep(2)
-            gongfa3 += 1
-            q = "s"
-            continue
-          else:
-            clear()
-            print("\nLevel max !")
-            sleep(2)
-            q = "s"
-            continue
-        else:
-          clear()
-          print("\nNot enough lingli !")
-          sleep(2)
-        q = "s"
-        continue
-      else:
-        q = "s"
-        continue
-    elif q == "w":
-      s = 0
-      clear()
-      print("\n[wuji1][gongji+10][jiage50lingli][w1]")
-      print("[wuji2][gongji+30][jiage150lingli][w2]")
-      print("[wuji3][gongji+50][jiage250lingli][w3]")
-      print("[tuichu][t]")
-      q = input("\n>>> ")
-      if q == "w1":
-        if ll > 49:
-          if wuji1 < 4:
-            jia += 10
-            ll -= 50
-            wuji1 += 1
-            clear()
-            print("\nYou buy it succesfully !")
-            print("\n[wuji1][lvl{}]".format(wuji1))
-            sleep(2)
-            q = "s"
-            continue
-          else:
-            clear()
-            print("\nLevel max !")
-            sleep(2)
-            q = "s"
-            continue
-        else:
-          clear()
-          print("\nNot enough lingli !")
-          sleep(2)
-        q = "s"
-        continue
-      elif q == "w2":
-        if ll > 149:
-          if wuji2 < 4:
-            jia += 30
-            ll -= 150
-            wuji2 += 1
-            clear()
-            print("\nYou buy it succesfully !")
-            print("\n[wuji2][lvl{}]".format(wuji2))
-            sleep(2)
-            q = "s"
-            continue
-          else:
-            clear()
-            print("\nLevel max !")
-            q = "s"
-            continue
-        else:
-          clear()
-          print("\nNot enough lingli !")
-          sleep(2)
-        q = "s"
-        continue
-      elif q == "w3":
-        if ll > 249:
-          if wuji3 < 4:
-            jia += 50
-            ll -= 250
-            wuji3 += 1
-            clear()
-            print("\nYou buy it succesfully !")
-            print("\n[wuji3][lvl{}]".format(wuji3))
-            sleep(2)
-            q = "s"
-            continue
-          else:
-            clear()
-            print("\nLevel max !")
-            sleep(2)
-            q = "s"
-            continue
-        else:
-          clear()
-          print("\nNot enough lingli !")
-          sleep(2)
-        q = "s"
-        continue
-      else:
-        q = "s"
-        continue
 
-    elif q == "l":
-      s = 0
-      clear()
-      print("\n[lingqi1][gongji+50][jiage500lingli][l1]")
-      print("[lingqi2][gongji+50][jiage500lingli][l2]")
-      print("[lingqi3][gongji+100][jiage1200lingli][l3]")
-      print("[tuichu][t]")
-      q = input("\n>>> ")
-      if q == "l1":
-        if ll > 49:
-          if wuji1 != "":
-            gongji += 50
-            ll -= 500
-            clear()
-            print("\nYou buy it succesfully !")
-            sleep(2)
-            lingqi1 = 0
-            q = "s"
-            continue
-          else:
-            clear()
-            print("\nAlready purchased !")
-            sleep(2)
-            q = "s"
-            continue
-        else:
-          clear()
-          print("\nNot enough lingli !")
-          sleep(2)
-        q = "s"
-        continue
-      elif q == "l2":
-        if ll > 149:
-          if wuji2 != "":
-            gongji += 50
-            ll -= 500
-            clear()
-            print("\nYou buy it succesfully !")
-            sleep(2)
-            lingqi = 0
-            q = "s"
-            continue
-          else:
-            clear()
-            print("\nAlready purchased !")
-            q = "s"
-            continue
-        else:
-          clear()
-          print("\nNot enough lingli !")
-          sleep(2)
-        q = "s"
-        continue
-      elif q == "l3":
-        if ll > 249:
-          if wuji3 != "":
-            gongji += 100
-            ll -= 1200
-            clear()
-            print("\nYou buy it succesfully !")
-            sleep(2)
-            lingqi = 0
-            q = "s"
-            continue
-          else:
-            clear()
-            print("\nAlready purchased !")
-            sleep(2)
-            q = "s"
-            continue
-        else:
-          clear()
-          print("\nNot enough lingli !")
-          sleep(2)
-        q = "s"
-        continue
-      else:
-        q = "s"
-        continue
-
-
-  elif q == "b":
-    clear()
-    baocun()
-    clear()
-    sleep(0.5)
-    for y in range(1,4):
-      for v in range(0, 4):
-        clear()
-        list_ing = []
-        for x in range(0, v+1):
-          list_ing.append("*")
-        ing = "".join(list_ing)
-        print("\n[baocunzhong] :{}".format(ing))
-        sleep(0.5)
-    sleep(0.5)
-    clear()
-    print("\nBaocun sucessfully !\n\nSee you next time !\n")
-    break
 
   elif q == "g":
     clear()
@@ -679,6 +702,7 @@ while True:
       q = "g"
       continue
       
+
   elif q == "w":
     clear()
     print("\n[wuji1][lvl:{}][+{}]".format(wuji1, wuji1*10))
@@ -692,6 +716,7 @@ while True:
     else:
       q = "w"
       continue
+
 
   elif q == "l":
     clear()
@@ -726,7 +751,7 @@ while True:
       q = ""
       continue
     elif q == "l1":
-      if lingqi1 == "-":
+      if lingqi1 == "11":
         clear()
         print("\nLingqi1 not purchased !")
         sleep(2)
@@ -747,7 +772,7 @@ while True:
           q = "l"
           continue
     elif q == "l2":
-      if lingqi2 == "-":
+      if lingqi2 == "11":
         clear()
         print("\nLingqi2 not purchased !")
         sleep(2)
@@ -768,7 +793,7 @@ while True:
           q = "l"
           continue
     elif q == "l3":
-      if lingqi3 == "-":
+      if lingqi3 == "11":
         clear()
         print("\nLingqi3 not purchased !")
         sleep(2)
@@ -793,16 +818,93 @@ while True:
       continue
 
 
-  elif q == "m":
+  elif q == "d":
     clear()
-    print("\n(in progress)\n[tuichu][t]")
+    print("Location : {}".format(location))
+    print("Go to :")
+    print("[House][h]")
+    print("[Forest][f]")
+    print("[Mystery Mountain][not accessible]")
+    print("[tuichu][t]")
     q = input("\n>>> ")
     if q == "t":
       q = ""
       continue
+    elif q == "h":
+      if location == "house":
+        clear()
+        print("\nAlready at house !")
+        sleep(2)
+        q = "d"
+        continue
+      else:
+        clear()
+        sleep(0.5)
+        for y in range(1,4):
+          for v in range(0, 4):
+            clear()
+            list_ing = []
+            for x in range(0, v+1):
+              list_ing.append("*")
+            ing = "".join(list_ing)
+            print("\n[Bashezhong] :{}".format(ing))
+            sleep(0.5)
+        sleep(0.5)
+        clear()
+        print("\nLocation : house")
+        location = "house"
+        sleep(2)
+        q = ""
+        continue
+    elif q == "f":
+      if location == "forest":
+        clear()
+        print("\nAlready at forest !")
+        sleep(2)
+        q = "d"
+        continue
+      else:
+        clear()
+        sleep(0.5)
+        for y in range(1,4):
+          for v in range(0, 4):
+            clear()
+            list_ing = []
+            for x in range(0, v+1):
+              list_ing.append("*")
+            ing = "".join(list_ing)
+            print("\n[Bashezhong] :{}".format(ing))
+            sleep(0.5)
+        sleep(0.5)
+        clear()
+        print("\nLocation : forest")
+        location = "forest"
+        sleep(2)
+        q = ""
+        continue
     else:
-      q = "m"
+      q = "d"
       continue
+
+  elif q == "b":
+    clear()
+    baocun()
+    clear()
+    sleep(0.5)
+    for y in range(1,4):
+      for v in range(0, 4):
+        clear()
+        list_ing = []
+        for x in range(0, v+1):
+          list_ing.append("*")
+        ing = "".join(list_ing)
+        print("\n[baocunzhong] :{}".format(ing))
+        sleep(0.5)
+    sleep(0.5)
+    clear()
+    print("\nBaocun sucessfully !\n\nSee you next time !\n")
+    break
 
   else:
     q = ""
+
