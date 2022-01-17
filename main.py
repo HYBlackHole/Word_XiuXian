@@ -455,52 +455,66 @@ while True:
           q = "s"
           continue
         elif q == "g2":
-          if ll > 99:
-            if gongfa2 < 10:
-              jia += 20
-              ll -= 100
-              clear()
-              gongfa2 += 1
-              print("\nYou buy it succesfully !")
-              print("\n[gongfa2][lvl:{}]".format(gongfa2))
-              sleep(2)
-              q = "s"
-              continue
+          if jixian < 101:
+            clear()
+            print("\nYou have to be at least at zhujiqi !")
+            sleep(3)
+            q = "s"
+            continue
+          else:
+            if ll > 99:
+              if gongfa2 < 10:
+                jia += 20
+                ll -= 100
+                clear()
+                gongfa2 += 1
+                print("\nYou buy it succesfully !")
+                print("\n[gongfa2][lvl:{}]".format(gongfa2))
+                sleep(2)
+                q = "s"
+                continue
+              else:
+                clear()
+                print("\nLevel max !")
+                q = "s"
+                continue
             else:
               clear()
-              print("\nLevel max !")
-              q = "s"
-              continue
-          else:
-            clear()
-            print("\nNot enough lingli !")
-            sleep(2)
-          q = "s"
-          continue
+              print("\nNot enough lingli !")
+              sleep(2)
+            q = "s"
+            continue
         elif q == "g3":
-          if ll > 499:
-            if gongfa3 < 10:
-              jia += 100
-              ll -= 500
-              clear()
-              gongfa3 += 1
-              print("\nYou buy it succesfully !")
-              print("\n[gongfa3][lvl:{}]".format(gongfa3))
-              sleep(2)
-              q = "s"
-              continue
+          if jixian < 501:
+            clear()
+            print("\nYou have to be at least at jindanqi !")
+            sleep(3)
+            q = "s"
+            continue
+          else:
+            if ll > 499:
+              if gongfa3 < 10:
+                jia += 100
+                ll -= 500
+                clear()
+                gongfa3 += 1
+                print("\nYou buy it succesfully !")
+                print("\n[gongfa3][lvl:{}]".format(gongfa3))
+                sleep(2)
+                q = "s"
+                continue
+              else:
+                clear()
+                print("\nLevel max !")
+                sleep(2)
+                q = "s"
+                continue
             else:
               clear()
-              print("\nLevel max !")
+              print("\nNot enough lingli !")
               sleep(2)
-              q = "s"
-              continue
-          else:
-            clear()
-            print("\nNot enough lingli !")
-            sleep(2)
-          q = "s"
-          continue
+            q = "s"
+            continue
         else:
           q = "s"
           continue
@@ -537,52 +551,66 @@ while True:
           q = "s"
           continue
         elif q == "w2":
-          if ll > 149:
-            if wuji2 < 4:
-              jia += 30
-              ll -= 150
-              wuji2 += 1
-              clear()
-              print("\nYou buy it succesfully !")
-              print("\n[wuji2][lvl:{}]".format(wuji2))
-              sleep(2)
-              q = "s"
-              continue
+          if jixian < 101:
+            clear()
+            print("\nYou have to be at least at zhujiqi !")
+            sleep(3)
+            q = "s"
+            continue
+          else:
+            if ll > 149:
+              if wuji2 < 4:
+                jia += 30
+                ll -= 150
+                wuji2 += 1
+                clear()
+                print("\nYou buy it succesfully !")
+                print("\n[wuji2][lvl:{}]".format(wuji2))
+                sleep(2)
+                q = "s"
+                continue
+              else:
+                clear()
+                print("\nLevel max !")
+                q = "s"
+                continue
             else:
               clear()
-              print("\nLevel max !")
-              q = "s"
-              continue
-          else:
-            clear()
-            print("\nNot enough lingli !")
-            sleep(2)
-          q = "s"
-          continue
+              print("\nNot enough lingli !")
+              sleep(2)
+            q = "s"
+            continue
         elif q == "w3":
-          if ll > 249:
-            if wuji3 < 4:
-              jia += 50
-              ll -= 250
-              wuji3 += 1
-              clear()
-              print("\nYou buy it succesfully !")
-              print("\n[wuji3][lvl:{}]".format(wuji3))
-              sleep(2)
-              q = "s"
-              continue
+          if jixian < 501:
+            clear()
+            print("\nYou have to be at least at jindanqi !")
+            sleep(3)
+            q = "s"
+            continue
+          else:
+            if ll > 249:
+              if wuji3 < 4:
+                jia += 50
+                ll -= 250
+                wuji3 += 1
+                clear()
+                print("\nYou buy it succesfully !")
+                print("\n[wuji3][lvl:{}]".format(wuji3))
+                sleep(2)
+                q = "s"
+                continue
+              else:
+                clear()
+                print("\nLevel max !")
+                sleep(2)
+                q = "s"
+                continue
             else:
               clear()
-              print("\nLevel max !")
+              print("\nNot enough lingli !")
               sleep(2)
-              q = "s"
-              continue
-          else:
-            clear()
-            print("\nNot enough lingli !")
-            sleep(2)
-          q = "s"
-          continue
+            q = "s"
+            continue
         else:
           q = "s"
           continue
@@ -596,73 +624,94 @@ while True:
         print("[tuichu][t]")
         q = input("\n>>> ")
         if q == "l1":
-          if ll > 49:
-            if wuji1 != "":
-              gongji += 50
-              ll -= 500
-              clear()
-              print("\nYou buy it succesfully !")
-              sleep(2)
-              lingqi1 = 0
-              q = "s"
-              continue
+          if jixian < 101:
+            clear()
+            print("\nYou have to be at least at zhujiqi !")
+            sleep(3)
+            q = "s"
+            continue
+          else:
+            if ll > 49:
+              if wuji1 != "":
+                gongji += 50
+                ll -= 500
+                clear()
+                print("\nYou buy it succesfully !")
+                sleep(2)
+                lingqi1 = 0
+                q = "s"
+                continue
+              else:
+                clear()
+                print("\nAlready purchased !")
+                sleep(2)
+                q = "s"
+                continue
             else:
               clear()
-              print("\nAlready purchased !")
+              print("\nNot enough lingli !")
               sleep(2)
-              q = "s"
-              continue
-          else:
-            clear()
-            print("\nNot enough lingli !")
-            sleep(2)
-          q = "s"
-          continue
+            q = "s"
+            continue
         elif q == "l2":
-          if ll > 149:
-            if wuji2 != "":
-              gongji += 50
-              ll -= 500
-              clear()
-              print("\nYou buy it succesfully !")
-              sleep(2)
-              lingqi = 0
-              q = "s"
-              continue
+          if jixian < 501:
+            clear()
+            print("\nYou have to be at least at jindanqi !")
+            sleep(3)
+            q = "s"
+            continue
+          else:
+            if ll > 149:
+              if wuji2 != "":
+                gongji += 50
+                ll -= 500
+                clear()
+                print("\nYou buy it succesfully !")
+                sleep(2)
+                lingqi = 0
+                q = "s"
+                continue
+              else:
+                clear()
+                print("\nAlready purchased !")
+                q = "s"
+                continue
             else:
               clear()
-              print("\nAlready purchased !")
-              q = "s"
-              continue
-          else:
-            clear()
-            print("\nNot enough lingli !")
-            sleep(2)
-          q = "s"
-          continue
+              print("\nNot enough lingli !")
+              sleep(2)
+            q = "s"
+            continue
         elif q == "l3":
-          if ll > 249:
-            if wuji3 != "":
-              gongji += 100
-              ll -= 1200
-              clear()
-              print("\nYou buy it succesfully !")
-              sleep(2)
-              lingqi = 0
-              q = "s"
-              continue
+          if jixian < 2501:
+            clear()
+            print("\nYou have to be at least at yuanyingqi !")
+            sleep(3)
+            q = "s"
+            continue
+          else:
+            if ll > 249:
+              if wuji3 != "":
+                gongji += 100
+                ll -= 1200
+                clear()
+                print("\nYou buy it succesfully !")
+                sleep(2)
+                lingqi = 0
+                q = "s"
+                continue
+              else:
+                clear()
+                print("\nAlready purchased !")
+                sleep(2)
+                q = "s"
+                continue
             else:
               clear()
-              print("\nAlready purchased !")
+              print("\nNot enough lingli !")
               sleep(2)
-              q = "s"
-              continue
-          else:
-            clear()
-            print("\nNot enough lingli !")
-            sleep(2)
-          q = "s"
-          continue
+            q = "s"
+            continue
         else:
           q = "s"
           continue
@@ -835,7 +884,7 @@ while True:
     print("Location : {}".format(location))
     print("Go to :")
     print("[House][h]")
-    print("[Forest][f]")
+    print("[Forest][min zhujiqi][f]")
     print("[Mystery Mountain][not accessible]")
     print("[tuichu][t]")
     q = input("\n>>> ")
@@ -869,31 +918,42 @@ while True:
         q = ""
         continue
     elif q == "f":
-      if location == "forest":
+      if jixian < 101:
         clear()
-        print("\nAlready at forest !")
-        sleep(2)
+        print("\nYou have to be at least at zhujiqi !")
+        sleep(3)
         q = "d"
         continue
       else:
-        clear()
-        sleep(0.5)
-        for y in range(1,4):
-          for v in range(0, 4):
+        if jixian < 101:
+          if location == "forest":
             clear()
-            list_ing = []
-            for x in range(0, v+1):
-              list_ing.append("*")
-            ing = "".join(list_ing)
-            print("\n[Bashezhong] :{}".format(ing))
+            print("\nAlready at forest !")
+            sleep(2)
+            q = "d"
+            continue
+          else:
+            clear()
             sleep(0.5)
-        sleep(0.5)
-        clear()
-        print("\nLocation : forest")
-        location = "forest"
-        sleep(2)
-        q = ""
-        continue
+            for y in range(1,4):
+              for v in range(0, 4):
+                clear()
+                list_ing = []
+                for x in range(0, v+1):
+                  list_ing.append("*")
+                ing = "".join(list_ing)
+                print("\n[Bashezhong] :{}".format(ing))
+                sleep(0.5)
+            sleep(0.5)
+            clear()
+            print("\nLocation : forest")
+            location = "forest"
+            sleep(2)
+            q = ""
+            continue
+        else:
+          clear()
+          print("")
     else:
       q = "d"
       continue
