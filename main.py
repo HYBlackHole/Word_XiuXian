@@ -23,8 +23,49 @@ wuji3 = 0
 lingqi1 = "11"
 lingqi2 = "11"
 lingqi3 = "11"
+jgongfa1 = 0
+jgongfa2 = 0
+jgongfa3 = 0
 lingqi = 0
 location = "house"
+jgongfa1 = 0
+maxgongfa1 = 0
+lvgongfa1 = 0
+
+def eval1():
+  global jgongfa1
+  global maxgongfa1
+  global lvgongfa1
+  global jia
+  if jgongfa1 < 201:
+    if jgongfa1 < 101:
+      lvgongfa1 = 1
+      maxgongfa1 = 100
+    else:
+      lvgongfa1 = 2
+      maxgongfa1 = 200
+  elif jgongfa1 < 301:
+    lvgongfa1 = 3
+    maxgongfa1 = 300
+  elif jgongfa1 < 401: 
+    lvgongfa1 = 4
+    maxgongfa1 = 400
+  elif jgongfa1 < 501:
+    lvgongfa1 = 5
+    maxgongfa1 = 500
+  else:
+    lvgongfa1 = 5
+    maxgongfa1 = 500
+    jgongfa1 = 500
+
+  if jixian == 100:
+    jia = 10+(lvgongfa1*10)
+  elif jixian == 500:
+    jia = 30+(lvgongfa1*10)
+  elif jixian == 2500:
+    jia = 130+(lvgongfa1*10)
+  elif jixian == 12500:
+    jia = 630+(lvgongfa1*10)
 
 
 def clear():
@@ -68,6 +109,9 @@ def baocun():
   bc_list.append("/"+str(lingqi3))
   bc_list.append("/"+str(lingqi))
   bc_list.append("/"+str(location))
+  bc_list.append("/"+str(jgongfa1))
+  bc_list.append("/"+str(jgongfa2))
+  bc_list.append("/"+str(jgongfa3))
   bc_list.append("/")
   bc_str = "".join(bc_list)
   dictio.append(bc_str)
@@ -84,6 +128,8 @@ def baocun():
 def dazuo(t):
   global ll
   global q
+  global jgongfa1
+  eval1()
   clear()
   sleep(0.5)
   for y in range(1,t):
@@ -97,21 +143,42 @@ def dazuo(t):
       sleep(0.5)
   sleep(0.5)
   clear()
+  eval1()
   if t == 4:
-    if location == "forest":
+    if location == "house":
       print("\n[lingli]+{}".format(jia))
       ll += jia
-    elif location == "house":
+      jgongfa1 += 20
+    elif location == "forest":
       print("\n[lingli]+{}".format(jia*2))
       ll += jia*2
-  elif t == 7:
-    if location == "forest":
+      jgongfa1 += 40
+  elif t == 10:
+    if location == "house":
+      print("\n[lingli]+{}".format(jia*2))
+      ll += jia*2
+      jgongfa1 += 40
+    elif location == "forest":
       print("\n[lingli]+{}".format(jia*4))
       ll += jia*4
-    elif location == "house":
-      print("\n[lingli]+{}".format(jia*2))
-      ll += jia*2
-  sleep(2)
+      jgongfa1 += 60
+  if jgongfa1 > 500:
+    jgongfa1 = 500
+    clear()
+    print("\n[Gongfa1 already max level !]")
+  else:
+    if t == 4:
+      if location == "house":
+        print("[Gongfa1 Exp+20]")
+      elif location == "forest":
+        print("[Gongfa1 Exp+40]")
+    elif t == 10:
+      if location == "house":
+        print("[[Gongfa1 Exp+40]")
+      elif location == "forest":
+        print("[Gongfa1 Exp+60]")
+
+  sleep(3)
 
 clear()
 sleep(2)
@@ -138,8 +205,9 @@ for v in range(0, 10):
   list_ing.append("|")
   ing = "".join(list_ing)
   print("\n\n\n\n[Jiazaizhong] :{}".format(ing))
-  n = random.randint(0, 2)
-  sleep(n)
+  n = random.randint(0, 1)
+  if list_ing[9] != "*":
+    sleep(n)
 sleep(3)
 clear()
 sleep(1)
@@ -149,7 +217,7 @@ clear()
 print("\nHello !\nWelcome to \"Word_XiuXian\" !")
 sleep(4)
 clear()
-sleep(2)
+sleep(0.5)
 a = 0
 while a != "s" and a != "l":
   clear()
@@ -294,7 +362,7 @@ elif a == "l":
   data = []
   decode1 = dictio[p2]
   it2 = 0
-  for x in range(0,17):
+  for x in range(0,20):
     decode2 = ""
     while decode1[it2] != "/":
       decode2 = decode2+decode1[it2]
@@ -318,6 +386,10 @@ elif a == "l":
   lingqi3 = int(data[14])
   lingqi = int(data[15])
   location = data[16]
+  jgongfa1 = int(data[17])
+  jgongfa2 = int(data[18])
+  jgongfa3 = int(data[19])
+
 
   f3 = open("data.txt", "r")
   mes = 0
@@ -363,17 +435,14 @@ while True:
     if jixian == 100:
       print("\nJingjie : zhujiqi")
       jixian = 500
-      jia += 20
       gongji += 30
     elif jixian == 500:
       print("\nJingjie : jindanqi")
       jixian = 2500
-      jia += 100
       gongji += 50
     elif jixian == 2500:
       print("\nJingjie : yuanyingqi")
       jixian = 12500
-      jia += 500
       gongji += 100
     elif jixian == 12500:
       clear()
@@ -389,7 +458,7 @@ while True:
         print("Jingjie : wu")
         print("Huizhang : wu")
       else:
-        print("Jingjie : lianqiqi")
+        print("Jingjie: lianqiqi")
         print("Huizhang : |*|")
     elif jixian == 500:
       print("Jingjie : zhujiqi")
@@ -425,20 +494,19 @@ while True:
       elif q == "g":
         clear()
         s = 0
-        print("\n[gongfa1][lingli+5][jiage30lingli][g1]")
-        print("[gongfa2][lingli+20][jiage100lingli][g2]")
-        print("[gongfa3][lingli+100][jiage500lingli][g3]")
+        print("\n[gongfa1][jiage30lingli][g1]")
+        print("[gongfa2][jiage100lingli][g2]")
+        print("[gongfa3][jiage500lingli][g3]")
         print("[tuichu][t]")
         q = input("\n>>> ")
         if q == "g1":
           if ll > 29:
             if gongfa1 < 10:
-              jia += 5
               ll -= 30
-              gongfa1 += 1
+              jgongfa1 += 30
               clear()
               print("\nYou buy it succesfully !")
-              print("\n[gongfa1][lvl:{}]".format(gongfa1))
+              print("\n[gongfa1][+1][Exp+30]")
               sleep(2)
               q = "s"
               continue
@@ -730,7 +798,7 @@ while True:
 
   if q == "x":
     clear()
-    print("\n[dazuo][d]\n[biguan][b]\n[tuichu][t]")
+    print("\n[dazuo][10s][d]\n[biguan][20s][b]\n[tuichu][t]")
     q = input("\n>>> ")
     if q == "t":
       q = ""
@@ -740,7 +808,7 @@ while True:
       q = ""
       continue
     elif q == "b":
-      dazuo(7)
+      dazuo(10)
       q = ""
       continue
     else:
@@ -751,9 +819,10 @@ while True:
   elif q == "g":
     clear()
     print("\nJia : +{}".format(jia))
-    print("\n[gongfa1][lvl:{}][+{}]".format(gongfa1, gongfa1*5))
-    print("[gongfa2][lvl:{}][+{}]".format(gongfa2, gongfa2*20))
-    print("[gongfa3][lvl:{}][+{}]".format(gongfa3, gongfa3*100))
+    eval1()
+    print("\n[gongfa1][Exp:{}/{}][Lvl:{}]".format(jgongfa1, maxgongfa1, lvgongfa1))
+    print("[gongfa2][lvl:{}]".format(gongfa2, gongfa2*20))
+    print("[gongfa3][lvl:{}]".format(gongfa3, gongfa3*100))
     print("\n[tuichu][t]")
     q = input("\n>>> ")
     if q == "t":
